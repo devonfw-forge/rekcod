@@ -1,0 +1,13 @@
+# Ignore big files
+*.tar
+*.tar.gz
+*.zip
+
+# Ignore wsl distribution for dev
+*.vhdx
+
+# Ignore dev scripts
+*.dev.*
+
+# Ignore diagrams
+diagrams/

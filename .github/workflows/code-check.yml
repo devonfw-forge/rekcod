@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  code-check:
+    name: Code Check
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Check out repository code
+      uses: actions/checkout@v2
+
+    - name: Install PSScriptAnalyzer
+      shell: pwsh
+      run: Install-Module -Name PSScriptAnalyzer
+    
+    - name: Execute Analyzer
+      shell: pwsh
+      run: |
+        $report=Invoke-ScriptAnalyzer -Path ./** -Recurse
+        if ($report)
+        {
+          Write-Output $report
+        }

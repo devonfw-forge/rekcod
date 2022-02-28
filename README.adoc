@@ -1,0 +1,38 @@
+= rekcod
+
+== Motivation
+rekcod (Docker in reverse) is an alternative to Docker-Desktop that was born after the changes in the terms and conditions of Docker-Desktop, which establishes that companies with more than 250 employees and an annual turnover of more than 10 million euros must use the Pro, Team or Business subscription.
+
+rekcod removes the paid-for product, Docker-Desktop, in exchange for being able to continue using the other features, such as being able to run Windows or Linux containers.
+
+You can find more information about Docker's new pricing tier here: https://www.docker.com/pricing/faq
+
+== Install
+rekcod will install a few tools to be able to offer the same advantages as Docker-Desktop:
+
+* Docker binary for Windows containers
+* Windows features needed like Containers or WSL
+* A WSL distro especially dedicated to Docker
+* A Powershell profile to be able to use rekcod or docker
+* A Powershell module to enable the use of Docker for non-admin users.
+
+To install rekcod*, you must clone the repository and run the `install.ps1` script as administrator.
+
+*At the moment, this is the only way to install it, but a feature that creates an .exe file that allows a much simpler installation is already under development.
+
+== How to use
+Using rekcod is very simple and does not clash with Docker.
+Installing rekcod creates two contexts in docker, win and lin, respectively, each of which will be used depending on the nature of the containers you plan to use.
+
+Along with docker, three new commands are also declared in the Powershell Profile:
+
+* rekcod-switch: Will switch the Docker context. If it is on Linux it will switch to Windows and vice versa.
+* rekcod-start: Will start Docker and give permissions to the non-admin user to use it. It will also start WSL which will expose the Docker daemon.
+* rekcod-shutdown: Shuts down the WSL distribution and the Windows Docker service.
+
+== Uninstall
+When developing rekcod, it was taken into account that when the user no longer wanted to use rekcod or docker, uninstallation should be simple and leave the computer as it was before rekcod.
+
+Therefore, to uninstall rekcod, it is as easy as running, as administrator, the file `uninstall.ps1`.
+
+The uninstall script will cleanup the environment variables, folders and tools, but it will keep the folder where rekcod was installed with the uninstall script. This is tracked and under development
